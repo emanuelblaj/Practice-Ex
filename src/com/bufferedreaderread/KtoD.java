@@ -14,7 +14,7 @@ public class KtoD {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter text ('stop' to quit).");
 		
-		try(FileWriter fw = new FileWriter("filex\\test.txt")) {
+		try(FileWriter fw = new FileWriter("filex\\testwriter.txt")) {
 			do {
 				System.out.print("-> ");
 				str = br.readLine();
