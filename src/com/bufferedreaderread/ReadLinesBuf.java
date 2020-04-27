@@ -21,7 +21,7 @@ public class ReadLinesBuf {
 			str = br.readLine();
 			System.out.println(str);
 		} while(!str.equals("stop"));
-System.out.println("You choose 'stop'.");
+		System.out.println("You choose 'stop'.");
 	}
 
 }
