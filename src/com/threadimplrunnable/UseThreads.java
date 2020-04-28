@@ -4,15 +4,10 @@ public class UseThreads {
 
 	public static void main(String[] args) {
 		System.out.println("Main thread starting.");
-
-//		First, construct a MyThread object.
 		MyThread mt = new MyThread("Child #1");
 		
-//		Next, construct a thread from that object.
-		Thread newThrd = new Thread(mt);
-		
-//		Finally, start execution of the thread.
-		newThrd.start();
+		mt.start();
+
 		
 		for(int i = 0; i < 50; i++) {
 			System.out.print(".");
