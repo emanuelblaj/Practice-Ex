@@ -35,10 +35,11 @@ public class ListDemo implements ListSelectionListener {
 		jlist = new JList<String>(names);
 		
 //		Set the list selection mode to single-selection.
-		jlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//		jlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 //		Add list to a scroll pane.
 		jscrlp = new JScrollPane(jlist);
+		
 		
 //		Set the preffered size of the scroll pane.
 		jscrlp.setPreferredSize(new Dimension(120, 90));
@@ -62,11 +63,17 @@ public class ListDemo implements ListSelectionListener {
 //	Handle list selection events.
 	public void valueChanged(ListSelectionEvent le) {
 //		Get the index of the changed item.
-		int idx = jlist.getSelectedIndex();
+		int idx[] = jlist.getSelectedIndices();
 		
-//		Display selection, if item was selected.
-		if(idx != -1) 
-			jlab.setText("Current selection: " + names[idx]) ;
+//		Display selection, if one or more items were selected.
+		if(idx.length != 0) {
+			String who = "";
+			
+//			Construct a string of the names.
+			for(int i : idx) 
+				who += names[i] + " ";
+			jlab.setText("Current selections: " + who);
+			}
 		else //Otherwisse, reprompt.
 			jlab.setText("Please choose a name");
 			

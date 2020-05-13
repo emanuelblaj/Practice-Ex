@@ -17,6 +17,8 @@ public class SwingFC implements ActionListener {
 	JLabel jlabFirst, jlabSecond; // displays prompts
 	JLabel jlabResult; // displays results and error messages
 	
+	JCheckBox jcbLoc; // check to display location of mismatch
+	
 	public SwingFC() {
 		
 //		Create a new JFrame container.
@@ -50,6 +52,9 @@ public class SwingFC implements ActionListener {
 		jlabSecond = new JLabel("Second file: ");
 		jlabResult = new JLabel("");
 		
+//		Create a check box.
+		jcbLoc = new JCheckBox("Show position of mismatch");
+		
 //		Add the componets to the content pane.
 		jfrm.add(jlabFirst);
 		jfrm.add(jtfFirst);
@@ -66,6 +71,7 @@ public class SwingFC implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		
 		int i = 0, j = 0;
+		int count = 0;
 		
 //		First, confirm that both file names have been entered.
 		if(jtfFirst.getText().equals("")) {
@@ -85,11 +91,16 @@ public class SwingFC implements ActionListener {
 				j = f2.read();
 				if(i != j)
 					break;
+				count++;
 				
 			} while(i != -1 && j != -1);
-			if(i != j)
-				jlabResult.setText("Files are not the same.");
-			else
+			if(i != j) {
+				if(jcbLoc.isSelected())
+					jlabResult.setText("Files differ at location " + count);
+				else
+					jlabResult.setText("Files are not the same.	");
+			}
+			else 
 				jlabResult.setText("Files compare equal.");
 			
 		} catch(IOException exc) {
